@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://diqufprq06hg2"]
+
+[ext_resource type="Texture2D" uid="uid://bufyhfxvdxjvf" path="res://Assets/circle-xxl (1).png" id="1_ho3g3"]
+
+[sub_resource type="Gradient" id="Gradient_7b6lf"]
+offsets = PackedFloat32Array(0, 0.0978261)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cnob0"]
+gradient = SubResource("Gradient_7b6lf")
+
+[sub_resource type="Curve" id="Curve_7b6lf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.690476, 0.606742), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_cnob0"]
+curve = SubResource("Curve_7b6lf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dxek4"]
+particle_flag_disable_z = true
+spread = 5.0
+initial_velocity_min = 14.0
+initial_velocity_max = 15.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_cnob0")
+color_ramp = SubResource("GradientTexture1D_cnob0")
+
+[node name="Air_Blast" type="Node2D"]
+
+[node name="Part" type="GPUParticles2D" parent="."]
+z_index = -2
+scale = Vector2(10, 10)
+emitting = false
+amount = 15
+texture = ExtResource("1_ho3g3")
+lifetime = 0.1
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_dxek4")

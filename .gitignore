@@ -1,0 +1,31 @@
+# Ignore Godot-specific junk
+.import/
+*.import
+*.tmp
+*.godot/
+*.mono/
+
+# Ignore user-specific Godot files
+*.cfg
+*.uid
+
+# Ignore the Assets folder
+Assets/
+
+# Ignore executable and build outputs
+*.exe
+*.dll
+*.pdb
+*.so
+*.dylib
+
+# Ignore OS junk
+.DS_Store
+Thumbs.db
+
+# Ignore logs and temp data
+*.log
+
+# Ignore backups or swap files
+*~
+*.swp
