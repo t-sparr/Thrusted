@@ -29,3 +29,7 @@ Thumbs.db
 # Ignore backups or swap files
 *~
 *.swp
+
+# Godot 4+ specific ignores
+.godot/
+/android/
