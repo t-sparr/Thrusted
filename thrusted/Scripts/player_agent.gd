@@ -13,6 +13,7 @@ var thruster_active: bool = false
 var blaster_timer: float = 0.0
 var blaster_active: bool = false
 var booster_sound_timer: float = 0
+
 @onready var screen_size = get_viewport_rect().size
 @onready var ghost_container = $GhostContainer
 @onready var blaster = $Blaster/Part
@@ -20,9 +21,6 @@ var booster_sound_timer: float = 0
 @onready var right_air = $Air_Blast_Right/Part
 @onready var air_hiss_player = $AirHissPlayer
 @onready var booster_sound = $Booster_Sound
-
-func _ready():
-	air_hiss_player.play()
 
 
 func _process(delta):

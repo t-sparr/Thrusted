@@ -1,107 +1,60 @@
-[gd_scene load_steps=9 format=3 uid="uid://dngprta2cco5r"]
+[gd_scene load_steps=8 format=3 uid="uid://dngprta2cco5r"]
 
-[ext_resource type="Script" uid="uid://b8o0pp5itfxlc" path="res://agent_physics.gd" id="1_8gbba"]
-[ext_resource type="Texture2D" uid="uid://io3ubbd4vgs7" path="res://Assets/kenney_simple-space/PNG/Default/ship_K.png" id="2_jjvhh"]
-[ext_resource type="PackedScene" uid="uid://4andm52wqxrg" path="res://Scenes/blaster.tscn" id="3_kry3j"]
-[ext_resource type="Texture2D" uid="uid://82fudosh0htl" path="res://Assets/kenney_simple-space/PNG/Default/icon_crossSmall.png" id="4_kry3j"]
-[ext_resource type="PackedScene" uid="uid://diqufprq06hg2" path="res://Scenes/air_blast.tscn" id="5_kry3j"]
-[ext_resource type="AudioStream" uid="uid://cytidrb0hqeuw" path="res://Assets/better_air_sound.mp3" id="6_6bp64"]
-[ext_resource type="AudioStream" uid="uid://diokx52q4apqe" path="res://Assets/146770__qubodup__rocket-boost-engine-loop.mp3" id="7_6bp64"]
+[ext_resource type="PackedScene" uid="uid://cgnvjfssn3t3b" path="res://Scenes/agent.tscn" id="1_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://c6w6t227tjvbv" path="res://Scenes/asteroid.tscn" id="2_bo1nx"]
 
 [sub_resource type="Environment" id="Environment_0xm2m"]
 background_energy_multiplier = 0.85
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_jjgbg"]
+a = Vector2(960, -540)
+b = Vector2(-960, -540)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_bo1nx"]
+a = Vector2(960, 540)
+b = Vector2(-960, 540)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_8gbba"]
+a = Vector2(960, 540)
+b = Vector2(960, -540)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_jjvhh"]
+a = Vector2(-960, -540)
+b = Vector2(-960, 540)
 
 [node name="Main" type="Node2D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0xm2m")
 
-[node name="Spaceship" type="RigidBody2D" parent="."]
-position = Vector2(0, 1)
-mass = 2.0
-gravity_scale = 0.0
-linear_damp = 1.2
-angular_damp = 0.2
-script = ExtResource("1_8gbba")
-engine_thrust = 1000.0
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Spaceship"]
-polygon = PackedVector2Array(18, 24, 2, -24, -16, 25, 7.43094e-07, 17)
-
-[node name="Main_Sprite" type="Sprite2D" parent="Spaceship"]
-texture = ExtResource("2_jjvhh")
-
-[node name="GhostContainer" type="Node2D" parent="Spaceship"]
-position = Vector2(2, 0)
-
-[node name="Agent_Sprite" type="Sprite2D" parent="Spaceship/GhostContainer"]
-position = Vector2(0, -1)
-texture = ExtResource("2_jjvhh")
-
-[node name="Agent_Sprite2" type="Sprite2D" parent="Spaceship/GhostContainer"]
-texture = ExtResource("2_jjvhh")
-
-[node name="Agent_Sprite3" type="Sprite2D" parent="Spaceship/GhostContainer"]
-texture = ExtResource("2_jjvhh")
-
-[node name="Agent_Sprite4" type="Sprite2D" parent="Spaceship/GhostContainer"]
-texture = ExtResource("2_jjvhh")
-
-[node name="Agent_Sprite5" type="Sprite2D" parent="Spaceship/GhostContainer"]
-texture = ExtResource("2_jjvhh")
-
-[node name="Agent_Sprite6" type="Sprite2D" parent="Spaceship/GhostContainer"]
-texture = ExtResource("2_jjvhh")
-
-[node name="Agent_Sprite7" type="Sprite2D" parent="Spaceship/GhostContainer"]
-texture = ExtResource("2_jjvhh")
-
-[node name="Agent_Sprite8" type="Sprite2D" parent="Spaceship/GhostContainer"]
-texture = ExtResource("2_jjvhh")
-
-[node name="Blaster" parent="Spaceship" instance=ExtResource("3_kry3j")]
-
-[node name="Thrusters" type="Node2D" parent="Spaceship"]
-position = Vector2(6, 19)
-
-[node name="IconCrossSmall" type="Sprite2D" parent="Spaceship/Thrusters"]
-z_index = -1
-position = Vector2(-13.5258, -10.7521)
-rotation = 2.3562
-scale = Vector2(0.526255, 0.246)
-texture = ExtResource("4_kry3j")
-
-[node name="IconCrossSmall2" type="Sprite2D" parent="Spaceship/Thrusters"]
-z_index = -1
-position = Vector2(1.47416, -10.7521)
-rotation = 2.39488
-scale = Vector2(0.272147, 0.525118)
-texture = ExtResource("4_kry3j")
-
-[node name="Air_Blast_Right" parent="Spaceship" instance=ExtResource("5_kry3j")]
-position = Vector2(8, 10)
-
-[node name="Air_Blast_Left" parent="Spaceship" instance=ExtResource("5_kry3j")]
-position = Vector2(-10, 10)
-rotation = 3.14159
-
-[node name="AirHissPlayer" type="AudioStreamPlayer" parent="Spaceship"]
-stream = ExtResource("6_6bp64")
-volume_db = -22.486
-pitch_scale = 1.09
-parameters/looping = true
-
-[node name="Booster_Sound" type="AudioStreamPlayer" parent="Spaceship"]
-stream = ExtResource("7_6bp64")
-volume_db = -1.464
-pitch_scale = 0.86
-parameters/looping = true
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="Bounds" type="StaticBody2D" parent="Environment"]
+
+[node name="Top" type="CollisionShape2D" parent="Environment/Bounds"]
+shape = SubResource("SegmentShape2D_jjgbg")
+
+[node name="Bottom" type="CollisionShape2D" parent="Environment/Bounds"]
+shape = SubResource("SegmentShape2D_bo1nx")
+
+[node name="Left" type="CollisionShape2D" parent="Environment/Bounds"]
+shape = SubResource("SegmentShape2D_8gbba")
+
+[node name="Right" type="CollisionShape2D" parent="Environment/Bounds"]
+shape = SubResource("SegmentShape2D_jjvhh")
+
+[node name="Asteroids" type="Node2D" parent="Environment"]
+
+[node name="Asteroid" parent="Environment/Asteroids" instance=ExtResource("2_bo1nx")]
+position = Vector2(-341, 164)
+
+[node name="Population" type="Node2D" parent="."]
+
+[node name="Agent" parent="Population" instance=ExtResource("1_jjgbg")]
+collision_layer = 3
+collision_mask = 3

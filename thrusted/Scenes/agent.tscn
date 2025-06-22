@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgnvjfssn3t3b"]
+
+[ext_resource type="Texture2D" uid="uid://io3ubbd4vgs7" path="res://Assets/kenney_simple-space/PNG/Default/ship_K.png" id="1_ot7av"]
+[ext_resource type="Script" uid="uid://dyubfq48o4rr5" path="res://Scripts/agent.gd" id="1_xr00j"]
+
+[node name="Agent" type="RigidBody2D"]
+mass = 2.0
+gravity_scale = 0.0
+linear_damp = 1.2
+angular_damp = 0.2
+script = ExtResource("1_xr00j")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+light_mask = 3
+visibility_layer = 3
+texture = ExtResource("1_ot7av")
+
+[node name="Collision" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(16, 24, 0, -24, -16, 24, 7.43094e-07, 17)

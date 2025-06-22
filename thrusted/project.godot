@@ -14,7 +14,11 @@ config/name="Thrusted"
 run/main_scene="uid://dngprta2cco5r"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/show_image=false
-config/icon="res://icon.svg"
+config/icon="res://vRandom/icon.svg"
+
+[autoload]
+
+Global="*res://Scripts/global.gd"
 
 [display]
 
@@ -27,7 +31,9 @@ window/size/initial_screen=1
 [file_customization]
 
 folder_colors={
-"res://Assets/": "red"
+"res://Assets/": "red",
+"res://Scenes/": "orange",
+"res://Scripts/": "purple"
 }
 
 [physics]
