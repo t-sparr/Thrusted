@@ -1,18 +1,82 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6w6t227tjvbv"]
+[gd_scene load_steps=4 format=3 uid="uid://c6w6t227tjvbv"]
 
-[ext_resource type="Texture2D" uid="uid://d4hbx4xytaxhw" path="res://Assets/kenney_simple-space/PNG/Default/meteor_squareDetailedLarge.png" id="1_0tomg"]
 [ext_resource type="Script" uid="uid://cowgmcm3gdn8r" path="res://Scripts/asteroid.gd" id="1_a2bka"]
+[ext_resource type="Texture2D" uid="uid://cwfqcccvyrvxh" path="res://Assets/Asteroids/large_asteroid_1.png" id="2_a2bka"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_a2bka"]
+friction = 0.0
+bounce = 1.0
 
 [node name="Asteroid" type="RigidBody2D"]
-collision_layer = 2
-collision_mask = 2
+texture_filter = 5
+collision_mask = 3
 mass = 4.0
+physics_material_override = SubResource("PhysicsMaterial_a2bka")
 gravity_scale = 0.0
+linear_damp_mode = 1
+angular_damp_mode = 1
 script = ExtResource("1_a2bka")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_0tomg")
+texture = ExtResource("2_a2bka")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-scale = Vector2(2.06222, 0.725183)
-polygon = PackedVector2Array(-4.36423, -33.0951, 0.96983, -33.0951, 11.638, -11.0317, 11.638, 1.37896, 3.87932, 33.0951, -0.484915, 33.0951, -11.638, 11.0317, -11.638, -1.37896)
+polygon = PackedVector2Array(33, -97, 64, -87, 106, -30, 103, 39, 66, 85, -1, 104, -73, 98, -104, 30, -106, -34, -71, -80, 3, -106)
+
+[node name="Ghost_Container" type="Node2D" parent="."]
+
+[node name="Ghost_0" type="StaticBody2D" parent="Ghost_Container"]
+collision_layer = 2
+
+[node name="Sprite" type="Sprite2D" parent="Ghost_Container/Ghost_0"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ghost_Container/Ghost_0"]
+
+[node name="Ghost_1" type="StaticBody2D" parent="Ghost_Container"]
+collision_layer = 2
+
+[node name="Sprite" type="Sprite2D" parent="Ghost_Container/Ghost_1"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ghost_Container/Ghost_1"]
+
+[node name="Ghost_2" type="StaticBody2D" parent="Ghost_Container"]
+collision_layer = 2
+
+[node name="Sprite" type="Sprite2D" parent="Ghost_Container/Ghost_2"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ghost_Container/Ghost_2"]
+
+[node name="Ghost_3" type="StaticBody2D" parent="Ghost_Container"]
+collision_layer = 2
+
+[node name="Sprite" type="Sprite2D" parent="Ghost_Container/Ghost_3"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ghost_Container/Ghost_3"]
+
+[node name="Ghost_4" type="StaticBody2D" parent="Ghost_Container"]
+collision_layer = 2
+
+[node name="Sprite" type="Sprite2D" parent="Ghost_Container/Ghost_4"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ghost_Container/Ghost_4"]
+
+[node name="Ghost_5" type="StaticBody2D" parent="Ghost_Container"]
+collision_layer = 2
+
+[node name="Sprite" type="Sprite2D" parent="Ghost_Container/Ghost_5"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ghost_Container/Ghost_5"]
+
+[node name="Ghost_6" type="StaticBody2D" parent="Ghost_Container"]
+collision_layer = 2
+
+[node name="Sprite" type="Sprite2D" parent="Ghost_Container/Ghost_6"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ghost_Container/Ghost_6"]
+
+[node name="Ghost_7" type="StaticBody2D" parent="Ghost_Container"]
+collision_layer = 2
+
+[node name="Sprite" type="Sprite2D" parent="Ghost_Container/Ghost_7"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ghost_Container/Ghost_7"]

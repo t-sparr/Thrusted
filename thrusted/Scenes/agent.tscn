@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://dyubfq48o4rr5" path="res://Scripts/agent.gd" id="1_xr00j"]
 
 [node name="Agent" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 7
 mass = 2.0
 gravity_scale = 0.0
 linear_damp = 1.2

@@ -1,10 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://dngprta2cco5r"]
+[gd_scene load_steps=9 format=3 uid="uid://dngprta2cco5r"]
 
 [ext_resource type="PackedScene" uid="uid://cgnvjfssn3t3b" path="res://Scenes/agent.tscn" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://c6w6t227tjvbv" path="res://Scenes/asteroid.tscn" id="2_bo1nx"]
 
 [sub_resource type="Environment" id="Environment_0xm2m"]
 background_energy_multiplier = 0.85
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bo1nx"]
+friction = 0.0
+bounce = 1.0
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_jjgbg"]
 a = Vector2(960, -540)
@@ -35,6 +39,9 @@ visible = false
 [node name="Environment" type="Node2D" parent="."]
 
 [node name="Bounds" type="StaticBody2D" parent="Environment"]
+collision_layer = 4
+collision_mask = 8
+physics_material_override = SubResource("PhysicsMaterial_bo1nx")
 
 [node name="Top" type="CollisionShape2D" parent="Environment/Bounds"]
 shape = SubResource("SegmentShape2D_jjgbg")
@@ -51,10 +58,21 @@ shape = SubResource("SegmentShape2D_jjvhh")
 [node name="Asteroids" type="Node2D" parent="Environment"]
 
 [node name="Asteroid" parent="Environment/Asteroids" instance=ExtResource("2_bo1nx")]
-position = Vector2(-341, 164)
+texture_filter = 3
+position = Vector2(-646, -22)
+
+[node name="Asteroid2" parent="Environment/Asteroids" instance=ExtResource("2_bo1nx")]
+texture_filter = 3
+position = Vector2(-646, -22)
+
+[node name="Asteroid3" parent="Environment/Asteroids" instance=ExtResource("2_bo1nx")]
+texture_filter = 3
+position = Vector2(-646, -22)
+
+[node name="Asteroid4" parent="Environment/Asteroids" instance=ExtResource("2_bo1nx")]
+texture_filter = 3
+position = Vector2(-646, -22)
 
 [node name="Population" type="Node2D" parent="."]
 
 [node name="Agent" parent="Population" instance=ExtResource("1_jjgbg")]
-collision_layer = 3
-collision_mask = 3
