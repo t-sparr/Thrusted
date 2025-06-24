@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://dngprta2cco5r"]
+[gd_scene load_steps=10 format=3 uid="uid://dngprta2cco5r"]
 
+[ext_resource type="Script" uid="uid://y5uf0p2ity3k" path="res://Scripts/main.gd" id="1_8gbba"]
 [ext_resource type="PackedScene" uid="uid://cgnvjfssn3t3b" path="res://Scenes/agent.tscn" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://c6w6t227tjvbv" path="res://Scenes/asteroid.tscn" id="2_bo1nx"]
 
@@ -27,6 +28,8 @@ a = Vector2(-960, -540)
 b = Vector2(-960, 540)
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_8gbba")
+asteroid_scene = ExtResource("2_bo1nx")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0xm2m")
@@ -56,22 +59,6 @@ shape = SubResource("SegmentShape2D_8gbba")
 shape = SubResource("SegmentShape2D_jjvhh")
 
 [node name="Asteroids" type="Node2D" parent="Environment"]
-
-[node name="Asteroid" parent="Environment/Asteroids" instance=ExtResource("2_bo1nx")]
-texture_filter = 3
-position = Vector2(-646, -22)
-
-[node name="Asteroid2" parent="Environment/Asteroids" instance=ExtResource("2_bo1nx")]
-texture_filter = 3
-position = Vector2(-646, -22)
-
-[node name="Asteroid3" parent="Environment/Asteroids" instance=ExtResource("2_bo1nx")]
-texture_filter = 3
-position = Vector2(-646, -22)
-
-[node name="Asteroid4" parent="Environment/Asteroids" instance=ExtResource("2_bo1nx")]
-texture_filter = 3
-position = Vector2(-646, -22)
 
 [node name="Population" type="Node2D" parent="."]
 
