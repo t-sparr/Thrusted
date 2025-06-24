@@ -22,7 +22,6 @@ var booster_sound_timer: float = 0
 @onready var air_hiss_player = $AirHissPlayer
 @onready var booster_sound = $Booster_Sound
 
-
 func _process(delta):
 	
 	var pos_thrust = Input.is_key_pressed(KEY_W)

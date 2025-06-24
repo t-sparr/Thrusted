@@ -1,21 +1,22 @@
 extends Node2D
+
 @export var asteroid_scene: PackedScene
 @onready var screen_size = get_viewport_rect().size
 
 
+
 func _ready():
-		spawn_asteroid(Vector2.ZERO, 200, Global.Asteroid.LARGE)
 		spawn_asteroid(Vector2.ZERO, 200, Global.Asteroid.BIG)
 		spawn_asteroid(Vector2.ZERO, 200, Global.Asteroid.BIG)
-		spawn_asteroid(Vector2.ZERO, 200, Global.Asteroid.LARGE)
 		spawn_asteroid(Vector2.ZERO, 200, Global.Asteroid.BIG)
 		spawn_asteroid(Vector2.ZERO, 200, Global.Asteroid.BIG)
-		spawn_asteroid(Vector2.ZERO, 200, Global.Asteroid.LARGE)
 		spawn_asteroid(Vector2.ZERO, 200, Global.Asteroid.BIG)
 		spawn_asteroid(Vector2.ZERO, 200, Global.Asteroid.BIG)
-		spawn_asteroid(Vector2.ZERO, 200, Global.Asteroid.LARGE)
 		spawn_asteroid(Vector2.ZERO, 200, Global.Asteroid.BIG)
 		spawn_asteroid(Vector2.ZERO, 200, Global.Asteroid.BIG)
+		
+		
+		
 
 
 func spawn_asteroid(center: Vector2, exclude_radius: float, asteroid_type: Global.Asteroid):
@@ -24,6 +25,8 @@ func spawn_asteroid(center: Vector2, exclude_radius: float, asteroid_type: Globa
 		asteroid.position = pos
 		add_child(asteroid)
 		asteroid.SET_UP_ASTEROID(asteroid_type)
+		
+		
 
 func get_position_outside_circle(center: Vector2, min_radius: float) -> Vector2:
 	var angle = randf_range(0, TAU)

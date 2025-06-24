@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c6w6t227tjvbv"]
 
 [ext_resource type="Script" uid="uid://cowgmcm3gdn8r" path="res://Scripts/asteroid.gd" id="1_a2bka"]
-[ext_resource type="Texture2D" uid="uid://bufyhfxvdxjvf" path="res://Assets/Custom/circle-xxl (1).png" id="2_a2bka"]
+[ext_resource type="Texture2D" uid="uid://dqjvvx4utdlrr" path="res://Assets/Asteroids/big_asteroid_1.png" id="2_a2bka"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_a2bka"]
 friction = 0.0
@@ -19,8 +19,6 @@ script = ExtResource("1_a2bka")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_a2bka")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 
 [node name="Ghost_Container" type="Node2D" parent="."]
 
@@ -79,3 +77,5 @@ collision_layer = 2
 [node name="Sprite" type="Sprite2D" parent="Ghost_Container/Ghost_7"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ghost_Container/Ghost_7"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
