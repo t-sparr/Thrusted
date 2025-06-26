@@ -1,11 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://dngprta2cco5r"]
+[gd_scene load_steps=11 format=3 uid="uid://dngprta2cco5r"]
 
 [ext_resource type="Script" uid="uid://y5uf0p2ity3k" path="res://Scripts/main.gd" id="1_8gbba"]
 [ext_resource type="PackedScene" uid="uid://cgnvjfssn3t3b" path="res://Scenes/agent.tscn" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://c6w6t227tjvbv" path="res://Scenes/asteroid.tscn" id="2_bo1nx"]
+[ext_resource type="Script" uid="uid://o5gjxq8v642a" path="res://Scenes/stars.gd" id="3_jjvhh"]
 
 [sub_resource type="Environment" id="Environment_0xm2m"]
+background_mode = 3
 background_energy_multiplier = 0.85
+glow_enabled = true
+glow_intensity = 0.9
+glow_strength = 0.75
+glow_bloom = 0.05
+glow_blend_mode = 0
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bo1nx"]
 friction = 0.0
@@ -59,6 +66,14 @@ shape = SubResource("SegmentShape2D_8gbba")
 shape = SubResource("SegmentShape2D_jjvhh")
 
 [node name="Asteroids" type="Node2D" parent="Environment"]
+
+[node name="Stars" type="Node2D" parent="Environment"]
+z_index = -100
+script = ExtResource("3_jjvhh")
+star_count = 175
+star_size_range = Vector2(1, 2)
+drift_speed_range = Vector2(0.01, 0.5)
+twinkle_duration_range = Vector2(5, 20)
 
 [node name="Population" type="Node2D" parent="."]
 

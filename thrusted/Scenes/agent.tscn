@@ -1,7 +1,40 @@
-[gd_scene load_steps=3 format=3 uid="uid://cgnvjfssn3t3b"]
+[gd_scene load_steps=11 format=3 uid="uid://cgnvjfssn3t3b"]
 
 [ext_resource type="Texture2D" uid="uid://io3ubbd4vgs7" path="res://Assets/kenney_simple-space/PNG/Default/ship_K.png" id="1_ot7av"]
 [ext_resource type="Script" uid="uid://dyubfq48o4rr5" path="res://Scripts/agent.gd" id="1_xr00j"]
+[ext_resource type="PackedScene" uid="uid://diqufprq06hg2" path="res://Scenes/air_blast.tscn" id="3_kragx"]
+[ext_resource type="AudioStream" uid="uid://cytidrb0hqeuw" path="res://Assets/Custom/better_air_sound.mp3" id="4_d4aoe"]
+[ext_resource type="AudioStream" uid="uid://diokx52q4apqe" path="res://Assets/Custom/146770__qubodup__rocket-boost-engine-loop.mp3" id="5_utlgp"]
+
+[sub_resource type="Gradient" id="Gradient_xr00j"]
+colors = PackedColorArray(0.919281, 4.47616e-06, 1.15514e-06, 1, 1, 0.835294, 0.101961, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ivqg2"]
+gradient = SubResource("Gradient_xr00j")
+
+[sub_resource type="Curve" id="Curve_kragx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.928571, 0.314607), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.84979, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ivqg2"]
+curve = SubResource("Curve_kragx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bdjee"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(7, 0, 0)
+angle_min = -176.0
+angle_max = 282.4
+spread = 30.0
+initial_velocity_min = 10.0
+initial_velocity_max = 49.02
+angular_velocity_min = -169.41
+angular_velocity_max = 282.35
+gravity = Vector3(0, 0, 0)
+scale_min = 5.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_ivqg2")
+color_ramp = SubResource("GradientTexture1D_ivqg2")
 
 [node name="Agent" type="RigidBody2D"]
 collision_layer = 8
@@ -19,3 +52,34 @@ texture = ExtResource("1_ot7av")
 
 [node name="Collision" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(16, 24, 0, -24, -16, 24, 7.43094e-07, 17)
+
+[node name="Blaster" type="Node2D" parent="."]
+
+[node name="Part" type="GPUParticles2D" parent="Blaster"]
+z_index = -3
+position = Vector2(0, 10)
+rotation = 1.5708
+emitting = false
+amount = 200
+lifetime = 1.03
+randomness = 0.87
+process_material = SubResource("ParticleProcessMaterial_bdjee")
+
+[node name="Air_Blast_Right" parent="." instance=ExtResource("3_kragx")]
+position = Vector2(8, 10)
+
+[node name="Air_Blast_Left" parent="." instance=ExtResource("3_kragx")]
+position = Vector2(-10, 10)
+rotation = 3.14159
+
+[node name="AirHissPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_d4aoe")
+volume_db = -30.422
+pitch_scale = 1.09
+parameters/looping = true
+
+[node name="Booster_Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_utlgp")
+volume_db = -15.38
+pitch_scale = 0.86
+parameters/looping = true

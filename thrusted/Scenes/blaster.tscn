@@ -3,7 +3,7 @@
 [sub_resource type="Gradient" id="Gradient_l7b48"]
 colors = PackedColorArray(0.919281, 4.47616e-06, 1.15514e-06, 1, 1, 0.835294, 0.101961, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ivqg2"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_l7b48"]
 gradient = SubResource("Gradient_l7b48")
 
 [sub_resource type="Curve" id="Curve_l7b48"]
@@ -28,7 +28,7 @@ gravity = Vector3(0, 0, 0)
 scale_min = 5.0
 scale_max = 10.0
 scale_curve = SubResource("CurveTexture_ivqg2")
-color_ramp = SubResource("GradientTexture1D_ivqg2")
+color_ramp = SubResource("GradientTexture1D_l7b48")
 
 [node name="Blaster" type="Node2D"]
 

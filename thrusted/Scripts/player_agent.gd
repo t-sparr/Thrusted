@@ -101,9 +101,6 @@ func update_ghosts():
 		ghost.global_position = global_position + offset
 		ghost.global_rotation = global_rotation
 
-
-
-
 func screen_wrap():
 	var pos = global_position
 
