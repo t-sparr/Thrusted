@@ -11,13 +11,11 @@ var ghost_offsets = [
 		Vector2(-1, -1), Vector2(0, -1), Vector2(1, -1),
 		Vector2(-1, 0),                Vector2(1, 0),
 		Vector2(-1, 1),  Vector2(0, 1), Vector2(1, 1)]
-
 var LARGE_ASTEROID = [
 	preload("res://Assets/Asteroids/large_asteroid_1.png"),
 	preload("res://Assets/Asteroids/large_asteroid_2.png"),
 	preload("res://Assets/Asteroids/large_asteroid_3.png"),
 	preload("res://Assets/Asteroids/large_asteroid_4.png")]
-
 var BIG_ASTEROID = [
 	preload("res://Assets/Asteroids/big_asteroid_1.png"),
 	preload("res://Assets/Asteroids/big_asteroid_2.png"),
@@ -27,27 +25,56 @@ var BIG_ASTEROID = [
 	preload("res://Assets/Asteroids/big_asteroid_6.png"),
 	preload("res://Assets/Asteroids/big_asteroid_7.png"),
 	preload("res://Assets/Asteroids/big_asteroid_8.png"),]
+var MED_ASTEROID = [
+	preload("res://Assets/Asteroids/med_asteroid_44.png"),
+	preload("res://Assets/Asteroids/med_asteroid_4.png"),
+	preload("res://Assets/Asteroids/med_asteroid_5.png"),
+	preload("res://Assets/Asteroids/med_asteroid_223.png"),]
+var SMALL_ASTEROID = [
+	preload("res://Assets/Asteroids/small_asteroid_1.png"),
+	preload("res://Assets/Asteroids/small_asteroid_2.png"),
+	preload("res://Assets/Asteroids/small_asteroid_4.png"),
+	preload("res://Assets/Asteroids/smalll_asteroid_2.png"),]
+var TINY_ASTEROID = [
+	preload("res://Assets/Asteroids/tiny_asteroid_1.png"),
+	preload("res://Assets/Asteroids/tiny_asteroid_2.png"),
+	preload("res://Assets/Asteroids/tiny_asteroid_3.png"),
+	preload("res://Assets/Asteroids/tiny_asteroid_4.png"),]
 
 func _physics_process(delta: float) -> void:
 	screen_wrap()
 	update_ghosts()
 	
 
-func SET_UP_ASTEROID(asteroid):
-	match asteroid:
-		Global.Asteroid.LARGE:
-			pass
-		Global.Asteroid.BIG:
-			set_up_big_asteroid()
-
-
-func set_up_big_asteroid():
-	var index = randi_range(0,BIG_ASTEROID.size()-1)
-	var texture = BIG_ASTEROID[index]
+func SET_UP_ASTEROID(asteroid_type):
+	var texture
+	var weight
+	var ny_bounce
+	match asteroid_type:
+			Global.Asteroid.LARGE:
+				weight = 32
+				ny_bounce = 1
+				texture = LARGE_ASTEROID[randi_range(0,LARGE_ASTEROID.size()-1)]
+			Global.Asteroid.BIG:
+				weight = 16
+				ny_bounce = 1
+				texture = BIG_ASTEROID[randi_range(0,BIG_ASTEROID.size()-1)]
+			Global.Asteroid.MED:
+				weight = 8
+				ny_bounce = 1
+				texture = MED_ASTEROID[randi_range(0,MED_ASTEROID.size()-1)]
+			Global.Asteroid.SMALL:
+				weight = 4
+				ny_bounce = .8
+				texture = SMALL_ASTEROID[randi_range(0,SMALL_ASTEROID.size()-1)]
+			Global.Asteroid.TINY:
+				weight = 1
+				ny_bounce = .6
+				texture = TINY_ASTEROID[randi_range(0,TINY_ASTEROID.size()-1)]
+		
 	$Sprite.texture = texture
 	$Sprite.centered = false
 	
-	# Get polygon from alpha and recenter it
 	var raw_poly = get_polygon_from_sprite($Sprite)
 	var center = Vector2.ZERO
 	for point in raw_poly:
@@ -58,17 +85,21 @@ func set_up_big_asteroid():
 	for point in raw_poly:
 		centered_poly.append(point - center)
 
-	# Apply to main sprite and collision
 	$Sprite.offset = -center
 	$CollisionPolygon2D.polygon = centered_poly
 	$CollisionPolygon2D.position = Vector2.ZERO
 
-	# Physics
+	setup_ghosts(texture, centered_poly, -center)
 	linear_velocity = Vector2.RIGHT.rotated(randf() * TAU) * randf_range(min_speed, max_speed)
 	angular_velocity = randf_range(-angular_vel_range, angular_vel_range)
+	mass = weight
+	physics_material_override.bounce = ny_bounce
 
-	# Apply to ghosts
-	setup_ghosts(texture, centered_poly, -center)
+
+func set_up_big_asteroid():
+	var index = randi_range(0,BIG_ASTEROID.size()-1)
+	var texture = BIG_ASTEROID[index]
+	
 	
 
 

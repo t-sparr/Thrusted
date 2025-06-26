@@ -6,16 +6,18 @@ extends Node2D
 
 
 func _ready():
-		spawn_asteroid(Vector2.ZERO, 200, Global.Asteroid.BIG)
-		spawn_asteroid(Vector2.ZERO, 200, Global.Asteroid.BIG)
-		spawn_asteroid(Vector2.ZERO, 200, Global.Asteroid.BIG)
-		spawn_asteroid(Vector2.ZERO, 200, Global.Asteroid.BIG)
-		spawn_asteroid(Vector2.ZERO, 200, Global.Asteroid.BIG)
-		spawn_asteroid(Vector2.ZERO, 200, Global.Asteroid.BIG)
-		spawn_asteroid(Vector2.ZERO, 200, Global.Asteroid.BIG)
-		spawn_asteroid(Vector2.ZERO, 200, Global.Asteroid.BIG)
 		
-		
+		for i in range(3):
+			spawn_asteroid(Vector2.ZERO, 200, Global.Asteroid.LARGE)
+		for i in range(4):
+			spawn_asteroid(Vector2.ZERO, 200, Global.Asteroid.BIG)
+		for i in range(3):
+			spawn_asteroid(Vector2.ZERO, 200, Global.Asteroid.MED)
+		for i in range(2):
+			spawn_asteroid(Vector2.ZERO, 200, Global.Asteroid.SMALL)
+		for i in range(2):
+			spawn_asteroid(Vector2.ZERO, 200, Global.Asteroid.TINY)
+
 		
 
 
@@ -25,6 +27,8 @@ func spawn_asteroid(center: Vector2, exclude_radius: float, asteroid_type: Globa
 		asteroid.position = pos
 		add_child(asteroid)
 		asteroid.SET_UP_ASTEROID(asteroid_type)
+			
+		
 		
 		
 

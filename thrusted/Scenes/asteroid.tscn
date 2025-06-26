@@ -5,7 +5,7 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_a2bka"]
 friction = 0.0
-bounce = 1.0
+bounce = 0.1
 
 [node name="Asteroid" type="RigidBody2D"]
 texture_filter = 5
